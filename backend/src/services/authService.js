@@ -1,13 +1,6 @@
 import { User } from '../models/User.js';
 
-/**
- * Registers a new user.
- * @param {Object} userData - User information
- * @param {string} userData.name - Full name
- * @param {string} userData.email - Unique email address
- * @param {string} userData.password - Plaintext password
- * @returns {Promise<Object>} Newly created user model
- */
+
 export const registerUser = async ({ name, email, password }) => {
   // Check if email already registered (duplicate checking)
   const existingUser = await User.findOne({ email });
@@ -17,7 +10,6 @@ export const registerUser = async ({ name, email, password }) => {
     throw error;
   }
 
-  // Create user (password is hashed in pre-save middleware)
   const user = await User.create({
     name,
     email,
@@ -27,13 +19,7 @@ export const registerUser = async ({ name, email, password }) => {
   return user;
 };
 
-/**
- * Authenticates an existing user by email and password.
- * @param {Object} credentials - User credentials
- * @param {string} credentials.email - Email address
- * @param {string} credentials.password - Plaintext password
- * @returns {Promise<Object>} Authenticated user instance
- */
+
 export const loginUser = async ({ email, password }) => {
   // Find user by email
   const user = await User.findOne({ email });
@@ -50,11 +36,7 @@ export const loginUser = async ({ email, password }) => {
   return user;
 };
 
-/**
- * Retrieves a user profile by ID (excluding password).
- * @param {string} userId - User ID
- * @returns {Promise<Object>} User document without password
- */
+
 export const getUserProfile = async (userId) => {
   const user = await User.findById(userId).select('-password');
   if (!user) {
@@ -66,10 +48,6 @@ export const getUserProfile = async (userId) => {
 import { OAuth2Client } from 'google-auth-library';
 const client = new OAuth2Client();
 
-/**
- * Verifies a Google ID token.
- * @param {string} idToken - Client-supplied Google token
- */
 export const verifyGoogleToken = async (idToken) => {
   try {
     const ticket = await client.verifyIdToken({
@@ -82,9 +60,7 @@ export const verifyGoogleToken = async (idToken) => {
   }
 };
 
-/**
- * Finds or creates a user from their verified Google profile.
- */
+
 export const upsertGoogleUser = async ({ googleId, email, name }) => {
   // Find by googleId
   let user = await User.findOne({ googleId });

@@ -3,10 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 import { GoogleLogin } from '@react-oauth/google';
 
-/**
- * Signup Page component.
- * Allows new users to register an account and logs them in automatically.
- */
+
 export const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

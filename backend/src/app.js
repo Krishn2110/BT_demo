@@ -6,7 +6,6 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const app = express();
 
-// Enable CORS with credentials configuration to permit HTTP-Only cookie transfer
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || 'http://localhost:5173',
@@ -24,7 +23,6 @@ app.use(cookieParser());
 // Authentication routes
 app.use('/api/auth', authRoutes);
 
-// Health check endpoint
 app.get('/', (req, res) => {
   res.status(200).json({ status: 'healthy', message: 'Auth API is running smoothly' });
 });

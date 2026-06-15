@@ -1,9 +1,5 @@
 import { useAuth } from '../hooks/useAuth.js';
 
-/**
- * Home Page component.
- * Protected dashboard landing page.
- */
 export const Home = () => {
   const { user } = useAuth();
 

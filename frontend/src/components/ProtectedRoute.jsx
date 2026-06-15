@@ -1,10 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 
-/**
- * Route protection wrapper component.
- * Blocks rendering of child elements if user is logged out and redirects to /login.
- */
+
 export const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
@@ -26,7 +23,6 @@ export const ProtectedRoute = ({ children }) => {
     );
   }
 
-  // Redirect to login if user session doesn't exist
   if (!user) {
     return <Navigate to="/login" replace />;
   }

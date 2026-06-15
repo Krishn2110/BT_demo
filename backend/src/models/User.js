@@ -34,7 +34,6 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Hash the password before saving a new or updated user
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
@@ -47,7 +46,6 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-// Instance method to check password validity
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await comparePassword(enteredPassword, this.password);
 };

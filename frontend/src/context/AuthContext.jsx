@@ -18,7 +18,6 @@ export const AuthProvider = ({ children }) => {
         setUser(response.data.user);
       }
     } catch (err) {
-      // 401 error simply means no token exists; fail silently without console error spam
       setUser(null);
     } finally {
       setLoading(false);
@@ -29,9 +28,7 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
-  /**
-   * User login function
-   */
+ 
   const login = async (email, password) => {
     try {
       setLoading(true);

@@ -6,6 +6,7 @@ import { generateToken } from '../utils/generateToken.js';
  * @route   POST /api/auth/signup
  * @access  Public
  */
+
 export const signup = async (req, res, next) => {
   const { name, email, password } = req.body;
 

@@ -3,10 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 import { GoogleLogin } from '@react-oauth/google';
 
-/**
- * Login Page component.
- * Allows registered users to authenticate, setting an HTTP-only cookie session.
- */
+
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

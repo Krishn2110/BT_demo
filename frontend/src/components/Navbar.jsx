@@ -1,9 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 
-/**
- * Top Navbar component. Displays brand branding, user profile initials, name, and logout action.
- */
+
 export const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -15,10 +13,8 @@ export const Navbar = () => {
     }
   };
 
-  // Do not render navbar if user is not authenticated
   if (!user) return null;
 
-  // Extract initials for the profile avatar placeholder
   const getInitials = (fullName) => {
     if (!fullName) return 'U';
     return fullName
